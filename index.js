@@ -37,6 +37,7 @@ async function run() {
     app.put("/fruit/:id", async (req, res) => {
       const id = req.params.id;
       const updateQuantity = req.body;
+      console.log(updateQuantity);
       const filter = { _id: ObjectId(id) };
       const options = { upsert: true };
       const updatedDoc = {
@@ -44,12 +45,12 @@ async function run() {
           quantity: updateQuantity.newQuantity,
         },
       };
-      const result = await fruitsCollection.updateOne(
+      const results = await fruitsCollection.updateOne(
         filter,
         updatedDoc,
         options
       );
-      res.send({ result });
+      res.send(results);
     });
   } finally {
   }
@@ -61,5 +62,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Example app listening on port", port);
+  console.log("Ex port", port);
 });
