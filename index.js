@@ -58,6 +58,13 @@ async function run() {
       const result = await fruitsCollection.deleteOne(query);
       res.send(result);
     });
+
+    // post
+    app.post("/fruit", async (req, res) => {
+      const newItem = req.body;
+      const result = await fruitsCollection.insertOne(newItem);
+      res.send(result);
+    });
   } finally {
   }
 }
