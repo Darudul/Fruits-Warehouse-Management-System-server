@@ -19,7 +19,7 @@ async function run() {
   try {
     await client.connect();
     const fruitsCollection = client.db("fruits1").collection("products");
-
+    const orderCollection = client.db("fruits1").collection("order");
     app.get("/fruit", async (req, res) => {
       const query = {};
       const cursor = fruitsCollection.find(query);
@@ -64,6 +64,15 @@ async function run() {
       const newItem = req.body;
       const result = await fruitsCollection.insertOne(newItem);
       res.send(result);
+    });
+
+    app.get("/myItem", async (req, res) => {
+      const email = req.query.email;
+      // console.log(email);
+      const query = { email: email };
+      const cursor = fruitsCollection.find(query);
+      const orders = await cursor.toArray();
+      res.send(orders);
     });
   } finally {
   }
