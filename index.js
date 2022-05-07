@@ -74,6 +74,13 @@ async function run() {
       const orders = await cursor.toArray();
       res.send(orders);
     });
+    // app.delete("/myItem/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   console.log(id);
+    //   const query = { _id: ObjectId(id) };
+    //   const result = await fruitsCollection.deleteOne(query);
+    //   res.send(result);
+    // });
   } finally {
   }
 }
