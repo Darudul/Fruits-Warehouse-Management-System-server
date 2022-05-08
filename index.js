@@ -112,5 +112,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("My management system", port);
+  console.log("My warehouse management system", port);
 });
